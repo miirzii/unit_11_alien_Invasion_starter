@@ -13,6 +13,7 @@ class Arsenal:
     
     def update_arsenal(self):
         self.arsenal.update()
+        self._remove_bullets_offscreen()
 
 
     def _remove_bullets_offscreen(self):
