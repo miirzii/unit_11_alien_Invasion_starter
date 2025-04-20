@@ -17,9 +17,8 @@ class Arsenal:
 
 
     def _remove_bullets_offscreen(self):
-         for bullet in self.arsenal:
-            if bullet.rect.top <= 0:  # Check top of the bullet, not bottom
-                print("Removing bullet!")
+         for bullet in self.arsenal.copy():
+            if bullet.rect.bottom <= 0:
                 self.arsenal.remove(bullet)
 
     def draw(self):
