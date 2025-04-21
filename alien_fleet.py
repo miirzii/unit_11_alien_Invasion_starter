@@ -1,4 +1,5 @@
 import pygame
+import random
 from alien import Alien
 from typing import TYPE_CHECKING
 
@@ -28,16 +29,25 @@ class AlienFleet:
         
         x_offset, y_offset = self.calculate_offsets(alien_w, alien_h, screen_w, fleet_w, fleet_h)
 
-        self._create_retangle_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
+        self._create_random_fleet(alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset)
 
-    def _create_retangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
-        for row in range(fleet_h):
-            for col in range(fleet_w):
-                current_x = alien_w * col + x_offset
-                current_y = alien_h * row + y_offset
-                if col % 2 == 0 or row % 2 == 0:
-                    continue
-                self._create_alien(current_x, current_y)
+    # def _create_retangle_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
+    #     for row in range(fleet_h):
+    #         for col in range(fleet_w):
+    #             current_x = alien_w * col + x_offset
+    #             current_y = alien_h * row + y_offset
+    #             if col % 2 == 0 or row % 2 == 0:
+    #                 continue
+    #             self._create_alien(current_x, current_y)
+
+    
+
+    def _create_random_fleet(self, alien_w, alien_h, fleet_w, fleet_h, x_offset, y_offset):
+        for _ in range(30):  # 30 aliens
+            x = random.randint(0, self.settings.screen_w - alien_w)
+            y = random.randint(0, self.settings.screen_h // 3)
+            self._create_alien(x, y)
+
 
     def calculate_offsets(self, alien_w, alien_h, screen_w, fleet_w, fleet_h):
         half_screen = self.settings.screen_h // 2
